@@ -342,7 +342,22 @@
                 <a href="Overview.html">Organization Overview</a>
             </div>
         </div>
+        <!-- Back + Home buttons -->
+    <button class="nav-button" onclick="history.back()">Back</button>
+    <a href="Index.html" class="nav-button" style="text-decoration: none;">Home</a>
     </nav>
+    <!-- Optional: disable Back button when there's no history -->
+<script>
+    if (history.length <= 1) {
+        var backBtn = document.querySelector('button[onclick="history.back()"]');
+        if (backBtn) {
+            backBtn.disabled = true;
+            backBtn.textContent = 'Back (No History)';
+            backBtn.style.opacity = '0.5';
+            backBtn.style.cursor = 'not-allowed';
+        }
+    }
+</script>
 
     <div class="container">
         <header>
