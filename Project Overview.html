@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Overview Dashboard - Atlassian Analytics (Interactive Mockup)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background: #f4f5f7;
+      color: #172b4d;
+    }
+    .top-nav {
+      background: #0052cc;
+      color: white;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+    }
+    .top-nav a { color: white; text-decoration: none; margin: 0 12px; }
+    .top-nav a:hover { text-decoration: underline; }
+    .container { max-width: 1440px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 26px; margin: 0 0 8px; }
+    .description { color: #505f79; margin-bottom: 24px; }
+    .filters {
+      background: white;
+      border: 1px solid #dfe1e6;
+      border-radius: 3px;
+      padding: 16px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .filter-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+    }
+    .filter-group label {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    select, input {
+      padding: 8px 12px;
+      border: 1px solid #dfe1e6;
+      border-radius: 3px;
+      background: white;
+      font-size: 14px;
+    }
+    .section-title {
+      font-size: 20px;
+      margin: 40px 0 16px;
+      border-bottom: 2px solid #dfe1e6;
+      padding-bottom: 8px;
+    }
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 24px;
+    }
+    .chart-container {
+      background: white;
+      border: 1px solid #dfe1e6;
+      border-radius: 3px;
+      padding: 16px;
+      height: 360px;
+    }
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #97a0af;
+      font-size: 12px;
+      border-top: 1px solid #dfe1e6;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-nav">
+    <div><strong>Atlassian Analytics</strong> • Dashboards • Project Overview (Demo)</div>
+    <div>
+      <a href="#">Templates</a> |
+      <a href="#">Help</a> |
+      <a href="#">Sign out</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>“Project overview” dashboard</h1>
+    <p class="description">
+      Agile metrics showing productivity across the software development lifecycle. 
+      Sample data for 3 projects (as of Feb 11, 2026). Interactive demo — change filters to update charts dynamically.
+    </p>
+
+    <!-- Controls (now interactive) -->
+    <div class="filters">
+      <div class="filter-group">
+        <label>Date range</label>
+        <select id="dateRange">
+          <option value="all">All (11 weeks)</option>
+          <option value="last4">Last 4 weeks</option>
+          <option value="last8">Last 8 weeks</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Project</label>
+        <select id="project">
+          <option value="all">All Projects</option>
+          <option value="mobile">Mobile App</option>
+          <option value="backend">Backend Platform</option>
+          <option value="web">Web Portal</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label>Defect work type</label>
+        <select id="defectType">
+          <option value="bug">Bug</option>
+          <option value="defect">Defect</option>
+          <option value="incident">Incident</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="section-title">Key Metrics</div>
+    <div class="overview-grid">
+
+      <div>
+        <strong>Net Flow of Work (weekly)</strong>
+        <div class="chart-container"><canvas id="netFlowChart"></canvas></div>
+        <p style="font-size:13px; color:#505f79; margin-top:8px;">
+          Difference: completed committed items minus newly committed items per week.<br>
+          Positive = focus on existing work; Negative = new scope added.
+        </p>
+      </div>
+
+      <div>
+        <strong>Defect Ratio (% defects of completed work)</strong>
+        <div class="chart-container"><canvas id="defectRatioChart"></canvas></div>
+        <p style="font-size:13px; color:#505f79; margin-top:8px;">
+          % of Bugs/Defects out of total completed items per week/project.<br>
+          Lower trend = improving quality. Changes with Defect Type.
+        </p>
+      </div>
+
+      <div>
+        <strong>Throughput (completed items per week)</strong>
+        <div class="chart-container"><canvas id="throughputChart"></canvas></div>
+        <p style="font-size:13px; color:#505f79; margin-top:8px;">
+          Number of work items completed each week, grouped by project.
+        </p>
+      </div>
+
+      <div>
+        <strong>Responsiveness (avg cycle time in days)</strong>
+        <div class="chart-container"><canvas id="responsivenessChart"></canvas></div>
+        <p style="font-size:13px; color:#505f79; margin-top:8px;">
+          Average days from "In Progress" to "Done" for items completed that week.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer>© 2026 Atlassian • Interactive Demo Dashboard with Sample Data • For client showcase only</footer>
+
+  <script>
+    // Full sample data (11 weeks)
+    const fullWeeks = ['Dec 2','Dec 9','Dec 16','Dec 23','Dec 30','Jan 6','Jan 13','Jan 20','Jan 27','Feb 3','Feb 10'];
+
+    // Data per project (for all charts)
+    const dataPerProject = {
+      mobile: {
+        newCommitted: [18,22,15,28,12,20,25,18,30,14,19],
+        completedCommitted: [25,30,28,22,18,35,32,40,28,45,38],
+        netFlow: [7,8,13,-6,6,15,7,22,-2,31,19],
+        defectRatioBug: [18,15,12,10,8,7,6,5,4,3,2],
+        defectRatioDefect: [15,12,10,8,6,5,4,3,2,1,1],
+        defectRatioIncident: [20,18,15,12,10,8,7,6,5,4,3],
+        throughput: [12,15,18,14,10,20,22,25,18,28,24],
+        cycleTime: [5.2,4.8,4.5,4.2,3.9,3.6,3.4,3.2,3.0,2.8,2.6]
+      },
+      backend: {
+        newCommitted: [20,18,22,15,25,12,28,20,25,18,30],
+        completedCommitted: [28,25,30,28,22,18,35,32,40,28,45],
+        netFlow: [8,7,8,13,-3,6,7,12,15,-2,15],
+        defectRatioBug: [22,20,18,16,14,12,10,9,8,7,6],
+        defectRatioDefect: [18,16,14,12,10,8,7,6,5,4,3],
+        defectRatioIncident: [25,22,20,18,15,13,11,10,9,8,7],
+        throughput: [8,10,12,9,7,15,18,20,15,22,19],
+        cycleTime: [8.1,7.6,7.2,6.8,6.4,6.0,5.7,5.4,5.1,4.8,4.5]
+      },
+      web: {
+        newCommitted: [15,20,18,22,15,25,12,28,20,25,18],
+        completedCommitted: [22,28,25,30,28,22,18,35,32,40,28],
+        netFlow: [7,8,7,8,13,-3,6,7,12,15,-2],
+        defectRatioBug: [25,24,22,20,18,15,13,11,9,8,7],
+        defectRatioDefect: [22,20,18,16,14,12,10,8,6,5,4],
+        defectRatioIncident: [28,25,23,20,18,15,13,11,9,7,6],
+        throughput: [10,12,14,11,8,18,20,22,17,25,21],
+        cycleTime: [6.5,6.2,5.9,5.6,5.3,5.0,4.7,4.4,4.1,3.8,3.5]
+      }
+    };
+
+    // Function to get aggregated data for 'all' projects
+    function getAggregated(field) {
+      return fullWeeks.map((_, i) => (
+        dataPerProject.mobile[field][i] + dataPerProject.backend[field][i] + dataPerProject.web[field][i]
+      ));
+    }
+
+    function getAverage(field) {
+      return fullWeeks.map((_, i) => (
+        (dataPerProject.mobile[field][i] + dataPerProject.backend[field][i] + dataPerProject.web[field][i]) / 3
+      ));
+    }
+
+    // Initialize charts
+    let netFlowChart, defectRatioChart, throughputChart, responsivenessChart;
+
+    function initCharts() {
+      // Net Flow Chart
+      netFlowChart = new Chart(document.getElementById('netFlowChart'), {
+        type: 'bar',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { title: { display: true, text: 'Work Items' } } },
+          plugins: { legend: { position: 'top' } }
+        }
+      });
+
+      // Defect Ratio Chart
+      defectRatioChart = new Chart(document.getElementById('defectRatioChart'), {
+        type: 'line',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { title: { display: true, text: 'Defect Ratio (%)' }, beginAtZero: true, max: 30 } },
+          plugins: { legend: { position: 'top' } }
+        }
+      });
+
+      // Throughput Chart
+      throughputChart = new Chart(document.getElementById('throughputChart'), {
+        type: 'bar',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { 
+            x: { stacked: true },
+            y: { stacked: true, title: { display: true, text: 'Completed Items' }, beginAtZero: true }
+          },
+          plugins: { legend: { position: 'top' } }
+        }
+      });
+
+      // Responsiveness Chart
+      responsivenessChart = new Chart(document.getElementById('responsivenessChart'), {
+        type: 'line',
+        data: { labels: [], datasets: [] },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: { y: { title: { display: true, text: 'Average Cycle Time (days)' }, beginAtZero: true } },
+          plugins: { legend: { position: 'top' } }
+        }
+      });
+
+      updateCharts(); // Initial update
+    }
+
+    // Function to update all charts based on filters
+    function updateCharts() {
+      const dateRange = document.getElementById('dateRange').value;
+      const project = document.getElementById('project').value;
+      const defectType = document.getElementById('defectType').value;
+
+      // Determine slice for date range
+      let sliceEnd = fullWeeks.length;
+      if (dateRange === 'last4') sliceEnd = 4;
+      else if (dateRange === 'last8') sliceEnd = 8;
+
+      const labels = fullWeeks.slice(-sliceEnd);
+
+      // Helper to get data for a field, handling 'all'
+      function getData(field, proj = project) {
+        if (proj === 'all') {
+          return (field.includes('Ratio') || field === 'cycleTime') 
+            ? getAverage(field).slice(-sliceEnd)
+            : getAggregated(field).slice(-sliceEnd);
+        }
+        return dataPerProject[proj][field].slice(-sliceEnd);
+      }
+
+      // Update Net Flow
+      const netDatasets = [
+        { label: 'New Committed', data: getData('newCommitted'), backgroundColor: '#ff5630' },
+        { label: 'Completed Committed', data: getData('completedCommitted'), backgroundColor: '#36b37e' },
+        { 
+          type: 'line', 
+          label: 'Net Flow', 
+          data: getData('netFlow'), 
+          borderColor: '#0052cc', 
+          borderWidth: 3, 
+          fill: false, 
+          tension: 0.2 
+        }
+      ];
+      netFlowChart.data.labels = labels;
+      netFlowChart.data.datasets = netDatasets;
+      netFlowChart.update();
+
+      // Update Defect Ratio (affected by defectType)
+      const defectField = `defectRatio${defectType.charAt(0).toUpperCase() + defectType.slice(1)}`;
+      let defectDatasets = [];
+      if (project === 'all') {
+        defectDatasets = [
+          { label: 'Mobile App', data: dataPerProject.mobile[defectField].slice(-sliceEnd), borderColor: '#36b37e', fill: false },
+          { label: 'Backend Platform', data: dataPerProject.backend[defectField].slice(-sliceEnd), borderColor: '#ffab00', fill: false },
+          { label: 'Web Portal', data: dataPerProject.web[defectField].slice(-sliceEnd), borderColor: '#5243aa', fill: false },
+          { label: 'Overall', data: getAverage(defectField), borderColor: '#0052cc', borderWidth: 3, fill: false }
+        ];
+      } else {
+        defectDatasets = [
+          { label: project.charAt(0).toUpperCase() + project.slice(1), data: getData(defectField), borderColor: '#0052cc', borderWidth: 3, fill: false }
+        ];
+      }
+      defectRatioChart.data.labels = labels;
+      defectRatioChart.data.datasets = defectDatasets;
+      defectRatioChart.update();
+
+      // Update Throughput
+      let throughputDatasets = [];
+      if (project === 'all') {
+        throughputDatasets = [
+          { label: 'Mobile App', data: getData('throughput', 'mobile'), backgroundColor: '#36b37e' },
+          { label: 'Backend Platform', data: getData('throughput', 'backend'), backgroundColor: '#ffab00' },
+          { label: 'Web Portal', data: getData('throughput', 'web'), backgroundColor: '#5243aa' }
+        ];
+      } else {
+        throughputDatasets = [
+          { label: project.charAt(0).toUpperCase() + project.slice(1), data: getData('throughput'), backgroundColor: '#0052cc' }
+        ];
+      }
+      throughputChart.data.labels = labels;
+      throughputChart.data.datasets = throughputDatasets;
+      throughputChart.update();
+
+      // Update Responsiveness
+      let respDatasets = [];
+      if (project === 'all') {
+        respDatasets = [
+          { label: 'Mobile App', data: getData('cycleTime', 'mobile'), borderColor: '#36b37e', fill: false },
+          { label: 'Backend Platform', data: getData('cycleTime', 'backend'), borderColor: '#ffab00', fill: false },
+          { label: 'Web Portal', data: getData('cycleTime', 'web'), borderColor: '#5243aa', fill: false },
+          { label: 'Average', data: getAverage('cycleTime').slice(-sliceEnd), borderColor: '#0052cc', borderWidth: 3, fill: false }
+        ];
+      } else {
+        respDatasets = [
+          { label: project.charAt(0).toUpperCase() + project.slice(1), data: getData('cycleTime'), borderColor: '#0052cc', borderWidth: 3, fill: false }
+        ];
+      }
+      responsivenessChart.data.labels = labels;
+      responsivenessChart.data.datasets = respDatasets;
+      responsivenessChart.update();
+    }
+
+    // Add event listeners to filters
+    document.getElementById('dateRange').addEventListener('change', updateCharts);
+    document.getElementById('project').addEventListener('change', updateCharts);
+    document.getElementById('defectType').addEventListener('change', updateCharts);
+
+    // Initialize
+    initCharts();
+  </script>
+
+</body>
+</html>
