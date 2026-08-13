@@ -1,334 +1,281 @@
-🚀 JIRA SETUP & IMPLEMENTATION – STEP BY STEP (ORDER WISE)
-
-🟢 PHASE 1 – PRE-IMPLEMENTATION (Before Touching Jira)
-1️⃣ Requirement Gathering (Most Important Step)
-Define:
-What type of project?
-Software Development
-ITSM / Service Desk
-Business Project
-Team size?
-Roles?
-Workflow stages?
-SLA required?
-Integrations needed?
-Migration required?
-Deliverable:
-Process document
-Role matrix
-Workflow diagram
-Field requirement list
-Migration plan (if applicable)
+# Jira Implementation & Consulting Portfolio
+
+A professional portfolio website showcasing Jira implementation, configuration, integration, automation, dashboard, reporting, and data migration capabilities.
+
+This project is designed as a technical portfolio and client-facing reference for Jira implementation and Agile project management services.
+
+## Overview
+
+The portfolio demonstrates how Jira can be designed and configured to support modern IT project delivery, Agile teams, DevOps processes, reporting, integrations, and data migration.
+
+The website contains dedicated sections for:
+
+- Jira implementation and configuration
+- Workflow and automation design
+- Custom fields, screens, permissions, and schemes
+- Project and sprint dashboards
+- Leadership and executive reporting
+- Jira ecosystem integrations
+- DevOps integrations
+- Third-party tool integrations
+- Jira data migration
+- Cloud migration
+- CSV/JSON data imports
+- Backup and restore considerations
+
+## Portfolio Pages
+
+### Main Portfolio
+
+`index.html`
+
+The primary portfolio page covering:
+
+- Professional profile
+- Jira implementation expertise
+- Workflow and automation
+- Jira customization
+- Dashboard and reporting
+- Agile project management
+- Technical capabilities
+- Portfolio/project examples
+- Contact information
+
+### Jira Integrations
+
+`integration.html`
+
+Demonstrates Jira integration capabilities across:
+
+- Confluence
+- Bitbucket
+- GitHub
+- CI/CD pipelines
+- Slack
+- Microsoft Teams
+- Zoom
+- Google Drive
+- Microsoft 365
+- Xray
+- Zephyr
+- TestRail
+- Salesforce
+- Zendesk
+
+The page also presents the DevOps lifecycle and integration governance approach.
+
+### Jira Data Migration
+
+`migration.html`
+
+Demonstrates migration capabilities including:
+
+- Jira Server/Data Center to Jira Cloud
+- Jira Cloud migration
+- Third-party platform migration
+- Azure DevOps migration
+- Asana migration
+- Monday.com migration
+- Trello migration
+- CSV/JSON imports
+- User and permission migration
+- Workflow and configuration migration
+- Automation migration
+- Data cleanup and validation
+- Backup and restore considerations
+
+## Project Structure
+
+```text
+Jira_Freelance/
+│
+├── README.md
+├── index.html
+├── integration.html
+├── migration.html
+├── LICENSE
+│
+├── assets/
+│   ├── Project dashboard.png
+│   ├── SprintDashbaord.png
+│   ├── Lidershipdashboards.png
+│   └── Profile IMG.jpeg
+│
+└── images/
+    ├── Myimage.png
+    ├── image2.png
+    ├── image3.png
+    └── image4.png
+```
+
+## Technologies
+
+This portfolio is built using lightweight web technologies:
+
+- HTML5
+- CSS3
+- Tailwind CSS
+- JavaScript
+- Responsive Web Design
 
+Tailwind CSS is loaded through the CDN in the HTML pages.
 
-🟢 PHASE 2 – SYSTEM INITIAL CONFIGURATION (Global Setup)
-Go to: ⚙ Jira Admin → System Settings
+## Key Capabilities Demonstrated
 
-🔹 2.1 General Configuration
-Configure:
-Site Title
-Default Language
-Default Timezone
-Email From Name
-Indexing Language
-📌 These are foundational system-level settings 
-Jira Implementation Guide
-
-🔹 2.2 Look & Feel (Branding)
-
-
-
-4
-Configure:
-Logo
-Site Title
-Favicon
-Navigation Colors
-Date Format
-ISO Standard
-Announcement Banner (for maintenance)
-
-
-
-🔹 2.3 Global Permissions Setup
-Go to: System → Global Permissions
-Define:
-Administer Jira
-Browse Users
-Share Dashboards
-Bulk Changes (restrict carefully ⚠)
-Create Team-Managed Projects
-📌 Best Practice: Assign to Groups, not individuals 
-Jira Implementation Guide
-
-🔹 2.4 Create Groups
-Example:
-jira-admins
-developers
-qa-team
-project-managers
-stakeholders
+### Jira Implementation
 
+- Jira project configuration
+- Issue/work type configuration
+- Workflow design
+- Screens and screen schemes
+- Custom fields
+- Permission schemes
+- Notification schemes
+- Project roles
+- Automation rules
 
+### Agile Delivery
 
+- Scrum project configuration
+- Sprint management
+- Backlog management
+- Agile workflows
+- Sprint reporting
+- Project tracking
+- Team dashboards
 
+### Reporting & Dashboards
 
-🟢 PHASE 3 – SPACE (PROJECT) LEVEL SETUP
+- Project dashboards
+- Sprint dashboards
+- Leadership dashboards
+- Executive reporting
+- Jira-based project visibility
+- KPI and delivery tracking
 
-🔹 3.1 Create Space / Project
-Choose:
-Company-managed (Recommended for enterprise control)
-Team-managed (For autonomy)
-Define:
-Name
-Key
-Template (Scrum / Kanban / Service)
+### Automation
 
-🔹 3.2 Configure Space Roles
-From your guide, default roles include:
-Administrators
-Developer
-QA
-Project Manager
-Business Stakeholder
-Service Desk Team (Do NOT delete) Jira Implementation Guide 
-Map:
-Groups → Roles → Permission Scheme
+Automation concepts demonstrated include:
 
+- Issue transitions
+- Assignment automation
+- Notifications
+- Workflow triggers
+- Status-based automation
+- Development activity triggers
+- Process automation
 
+### Integration
 
-🔹 3.3 Permission Scheme Setup
-Define permissions:
-Browse
-Create
-Edit
-Transition
-Assign
-Add Comments
-Delete
-Issue Security
-Use Permission Helper for testing 
-Jira Implementation Guide
+The portfolio covers Jira integrations with:
 
+- Atlassian products
+- Development repositories
+- CI/CD systems
+- Communication platforms
+- Documentation platforms
+- Testing platforms
+- CRM and ITSM platforms
 
+### Migration
 
+Migration services demonstrated include:
 
+- Jira Server/Data Center → Jira Cloud
+- Third-party platforms → Jira
+- CSV/JSON → Jira
+- User and permission migration
+- Workflow migration
+- Automation migration
+- Configuration cleanup
+- Data validation
 
+## Design Approach
 
+The portfolio follows a professional B2B technology-services design approach with:
 
+- Responsive layouts
+- Clear service categorization
+- Technical service descriptions
+- Client-focused messaging
+- Visual portfolio examples
+- Separate pages for specialized services
+- Consistent navigation and branding
 
+## Running the Project
 
-🟢 PHASE 4 – WORKFLOW DESIGN
+This is a static website and does not require a backend server.
 
-🔹 4.1 Define Workflow Stages
-Example (Software Scrum):
-To Do → In Progress → Code Review → QA → Done
-Example (ITSM):
-Open → Assigned → In Progress → Pending → Resolved → Closed
-🔹 4.2 Configure:
-Status
-Transitions
-Validators
-Conditions
-Post Functions
-Screens
+### Option 1 — Open Locally
 
-🔹 4.3 Map Workflow to Issue Types
-Bug
-Task
-Story
-Epic
-Service Request
-Incident
+Open:
 
+```text
+index.html
+```
 
+in a modern web browser.
 
-🟢 PHASE 5 – FIELDS & SCREENS
+### Option 2 — Local Development Server
 
-🔹 5.1 Create Custom Fields
-Example:
-Severity
-Root Cause
-Environment
-Deployment Date
-Business Impact
+You can also serve the project using a local HTTP server.
 
-🔹 5.2 Screen Scheme Mapping
-Map:
-Create Screen
-Edit Screen
-View Screen
+For example:
 
+```bash
+python3 -m http.server 8000
+```
 
+Then open:
 
+```text
+http://localhost:8000
+```
 
+## Deployment
 
+Because this is a static HTML website, it can be deployed to services such as:
 
+- GitHub Pages
+- Vercel
+- Netlify
+- Cloudflare Pages
+- Azure Static Web Apps
 
-🟢 PHASE 6 – NOTIFICATION CONFIGURATION
+No database or backend server is required for the current portfolio.
 
-🔹 6.1 Notification Scheme
-Define who gets notified:
-Reporter
-Assignee
-Watchers
-Project Role
+## Portfolio Purpose
 
-🔹 6.2 Email Setup
-Check:
-Outgoing Mail (Enable in Prod)
-Disable during migration/bulk update ⚠ Jira Implementation Guide 
+This project is intended for:
 
-🔹 6.3 Alert Configuration (For ITSM)
+- Freelance portfolio presentation
+- Jira implementation consulting
+- Upwork portfolio demonstration
+- Client discovery discussions
+- Technical capability presentation
+- Jira implementation proposals
+- Integration and migration service demonstrations
 
+## Author
 
+**Devendrappa**
 
-4
-Configure:
-Email alerts
-SMS
-Voice
-Mobile push
-Quiet hours
-Escalation rules Jira Implementation Guide 
+Jira Implementation Specialist  
+Agile Project Manager (CSM)
 
-🟢 PHASE 7 – AUTOMATION
+Areas of focus:
 
-🔹 7.1 Create Automation Rules
-Structure:
-Trigger → Condition → Action
-Example:
-When issue created → Assign to team lead
-When moved to Done → Notify stakeholders
-When Severity = Critical → Send escalation email
-Use:
-Templates
-Global rules
-Audit log for troubleshooting Jira Implementation Guide 
+- Jira Implementation
+- Jira Administration
+- Agile Project Management
+- Workflow & Automation
+- Dashboards & Reporting
+- Jira Integrations
+- Jira Data Migration
+- IT Service Management
 
+## License
 
+This project is licensed under the MIT License.
 
-
-
-
-
-🟢 PHASE 8 – DASHBOARDS & REPORTING
-
-🔹 8.1 Default Dashboard Setup
-
-
-
-4
-Add gadgets:
-Filter Results
-Pie Chart
-Two-Dimensional Filter
-Recently Created Chart
-Ensure:
-Filters are shared properly
-Projects exist (avoid invalid project ID errors) Jira Implementation Guide 
-
-
-
-
-
-
-🟢 PHASE 9 – IMPORT / MIGRATION (If Required)
-
-🔹 9.1 Cloud to Cloud
-Order:
-Take backup
-Import Data (.xml)
-Import Media
-Validate users
-Validate permissions
-⚠ Import overwrites data 
-Jira Implementation Guide
-
-🔹 9.2 Server to Cloud
-Use: Jira Cloud Migration Assistant (JCMA) 
-Jira Implementation Guide
-Site Import is discontinued.
-
-🔹 9.3 CSV Import (Most Common)
-Steps:
-Clean data
-Map fields carefully
-Test in sandbox
-Validate workflow mapping
-
-🟢 PHASE 10 – SECURITY & GOVERNANCE
-
-🔹 10.1 Audit Log
-Used for:
-Permission changes
-Workflow edits
-User creation
-Compliance audits Jira Implementation Guide 
-
-🔹 10.2 Backup Strategy
-Take periodic manual backups
-Include attachments
-Store securely
-Document restore procedure Jira Implementation Guide 
-
-🔹 10.3 Email Monitoring
-Use:
-Admin Email Audit
-Monitor failed emails
-Check Free plan email limits Jira Implementation Guide 
-
-
-
-🟢 PHASE 11 – GO LIVE CHECKLIST
-Before Go Live:
-✅ Permissions tested ✅ Workflows tested ✅ Automation tested ✅ Email tested ✅ Dashboards validated ✅ Migration validated ✅ Backup taken ✅ Announcement banner configured
-
-🟢 PHASE 12 – POST GO-LIVE SUPPORT
-After launch:
-Monitor Audit Log
-Monitor Automation usage
-Monitor Email failures
-Fine tune notification scheme
-Review bulk change permissions
-Optimize performance
-
-
-
-
-
-
-🎯 START → END SUMMARY FLOW
-
-
-Requirement Gathering
-↓
-System Global Setup
-↓
-Create Groups
-↓
-Create Project
-↓
-Configure Roles
-↓
-Configure Permissions
-↓
-Design Workflow
-↓
-Create Fields & Screens
-↓
-Setup Notifications
-↓
-Setup Automation
-↓
-Create Dashboards
-↓
-Test Everything
-↓
-Migration (if needed)
-↓
-Take Backup
-↓
-Go Live
-↓
-Monitor & Optimize
+See the [`LICENSE`](LICENSE) file for details.
